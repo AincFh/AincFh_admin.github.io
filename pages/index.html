@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>仪表盘 - 博客后台管理系统</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="../images/logo.png" alt="Logo" class="admin-logo">
+                <h1>博客管理系统</h1>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">
+                        <a href="./index.html">
+                            <i class="fas fa-home"></i>
+                            <span>仪表盘</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./posts/index.html">
+                            <i class="fas fa-file-alt"></i>
+                            <span>文章管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./categories/index.html">
+                            <i class="fas fa-folder"></i>
+                            <span>分类管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./comments/index.html">
+                            <i class="fas fa-comments"></i>
+                            <span>评论管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="./settings/index.html">
+                            <i class="fas fa-cog"></i>
+                            <span>系统设置</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 主要内容区 -->
+        <main class="main-content">
+            <!-- 顶部导航栏 -->
+            <header class="top-nav">
+                <div class="nav-left">
+                    <button class="toggle-sidebar">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h2>仪表盘</h2>
+                </div>
+                <div class="nav-right">
+                    <div class="admin-info">
+                        <img src="../images/avatar.png" alt="Avatar" class="admin-avatar">
+                        <span class="admin-name">管理员</span>
+                        <div class="admin-dropdown">
+                            <ul>
+                                <li>
+                                    <a href="./settings/profile.html">
+                                        <i class="fas fa-user"></i>
+                                        个人信息
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="./login.html" class="logout">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                        退出登录
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- 页面内容 -->
+            <div class="content">
+                <!-- 数据概览卡片 -->
+                <div class="overview-cards">
+                    <div class="card" data-type="posts">
+                        <div class="card-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>文章总数</h3>
+                            <p>0</p>
+                            <div class="card-trend">
+                                <span class="trend-value">+0</span>
+                                <span class="trend-period">较上周</span>
+                            </div>
+                            <div class="data-source">
+                                <span class="real-data">实时数据</span>
+                                <span class="demo-data">演示数据</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card" data-type="views">
+                        <div class="card-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>总浏览量</h3>
+                            <p>0</p>
+                            <div class="card-trend">
+                                <span class="trend-value">+0</span>
+                                <span class="trend-period">较昨日</span>
+                            </div>
+                            <div class="data-source">
+                                <span class="real-data">实时数据</span>
+                                <span class="demo-data">演示数据</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card" data-type="comments">
+                        <div class="card-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>评论数</h3>
+                            <p>0</p>
+                            <div class="card-trend">
+                                <span class="trend-value">+0</span>
+                                <span class="trend-period">较上周</span>
+                            </div>
+                            <div class="data-source">
+                                <span class="real-data">实时数据</span>
+                                <span class="demo-data">演示数据</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card" data-type="users">
+                        <div class="card-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="card-info">
+                            <h3>用户数</h3>
+                            <p>0</p>
+                            <div class="card-trend">
+                                <span class="trend-value">+0</span>
+                                <span class="trend-period">较上月</span>
+                            </div>
+                            <div class="data-source">
+                                <span class="real-data">实时数据</span>
+                                <span class="demo-data">演示数据</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 在 content 区域添加 -->
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>访问统计</h3>
+                        <select class="chart-period">
+                            <option value="7">最近7天</option>
+                            <option value="30">最近30天</option>
+                            <option value="90">最近90天</option>
+                        </select>
+                    </div>
+                    <div id="visitChart"></div>
+                </div>
+
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3>最新文章</h3>
+                        <a href="./posts/index.html" class="view-all">查看全部</a>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>标题</th>
+                                <th>分类</th>
+                                <th>发布时间</th>
+                                <th>浏览量</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- 这里会通过 JavaScript 动态添加数据 -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/dashboard.js"></script>
+</body>
+</html> 

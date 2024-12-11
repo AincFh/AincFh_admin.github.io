@@ -1,0 +1,855 @@
+/* 重置默认样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: var(--transition);
+}
+
+/* 根变量 */
+:root {
+    --primary-color: #0066CC;
+    --secondary-color: #147CE5;
+    --success-color: #34C759;
+    --warning-color: #FF9F0A;
+    --error-color: #FF3B30;
+    --text-primary: #1D1D1F;
+    --text-secondary: #86868B;
+    --border-color: #D2D2D7;
+    --bg-primary: #F5F5F7;
+    --bg-secondary: #FAFAFA;
+    --dark-bg: #000000;
+    --dark-card: #1C1C1E;
+    --dark-border: #38383A;
+    --text-color: #1d1d1f;
+    --text-light: #86868b;
+    --bg-light: #f5f7fa;
+    --bg-white: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --theme-transition: background-color 0.3s ease,
+                       color 0.3s ease,
+                       border-color 0.3s ease,
+                       box-shadow 0.3s ease;
+}
+
+/* 深色模式变量 */
+[data-theme="dark"] {
+    --primary-color: #0a84ff;
+    --text-color: #f5f5f7;
+    --text-light: #a1a1a6;
+    --border-color: #424245;
+    --bg-light: #1d1d1f;
+    --bg-white: #000000;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+/* 基础样式 */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-primary);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Apple 风格按钮 */
+.btn {
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: none;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-secondary {
+    background: var(--bg-light);
+    color: var(--primary-color);
+}
+
+/* Apple 风格表单控件 */
+.form-control {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    font-size: 15px;
+    background: #fafafa;
+    transition: var(--transition);
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(0,102,204,0.1);
+    outline: none;
+}
+
+/* Apple 风格消息提示 */
+.message-toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 12px 24px;
+    background: var(--bg-white);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transform: translateX(120%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+}
+
+.message-toast.show {
+    transform: translateX(0);
+}
+
+.message-toast.success {
+    border-left: 4px solid var(--success-color);
+}
+
+.message-toast.error {
+    border-left: 4px solid var(--error-color);
+}
+
+/* Apple 风格模态框 */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    z-index: 1000;
+}
+
+.modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: var(--bg-white);
+    border-radius: 16px;
+    padding: 24px;
+    max-width: 90%;
+    width: 400px;
+    transform: translateY(-20px);
+    transition: var(--transition);
+}
+
+.modal-overlay.show .modal-content {
+    transform: translateY(0);
+}
+
+/* 主题切换按钮 */
+.theme-toggle {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: var(--bg-secondary);
+    color: var(--text-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.theme-toggle i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-toggle .fa-sun {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0) scale(1);
+}
+
+.theme-toggle .fa-moon {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-90deg) scale(0.5);
+}
+
+[data-theme="dark"] .theme-toggle .fa-sun {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(90deg) scale(0.5);
+}
+
+[data-theme="dark"] .theme-toggle .fa-moon {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0) scale(1);
+}
+
+/* 确保所有元素在深色模式下切换 */
+[data-theme="dark"] {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --text-color: #f5f5f5;
+    --border-color: #444;
+    --input-bg: #333;
+    --primary-color: #bb86fc;
+    --primary-light: #bb86fc;
+    --primary-dark: #3700b3;
+}
+
+/* 添加到现有样式中 */
+
+/* 优化渲染性能 */
+* {
+    /* 启用硬件加速 */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* 优化动画性能 */
+.animate {
+    will-change: transform;
+}
+
+/* 图片懒加载占位 */
+img[data-src] {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+img[data-src][src] {
+    opacity: 1;
+}
+
+/* 优化滚动性能 */
+.scroll-container {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* 优化字体加载 */
+@font-face {
+    font-family: 'CustomFont';
+    font-display: swap;
+    src: url('../fonts/custom-font.woff2') format('woff2');
+}
+
+/* 确认弹窗样式 */
+.confirm-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 9999;
+    backdrop-filter: blur(5px);
+}
+
+.confirm-modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.confirm-content {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    width: 90%;
+    max-width: 400px;
+    transform: translateY(-20px);
+    transition: all 0.3s ease;
+}
+
+.confirm-modal.show .confirm-content {
+    transform: translateY(0);
+}
+
+.confirm-content h3 {
+    font-size: 18px;
+    margin-bottom: 12px;
+    color: var(--text-color);
+}
+
+.confirm-content p {
+    color: var(--text-light);
+    margin-bottom: 24px;
+    line-height: 1.5;
+}
+
+.confirm-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.confirm-actions button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cancel-btn {
+    background: #f5f5f5;
+    color: var(--text-color);
+}
+
+.confirm-btn {
+    background: var(--primary-color);
+    color: white;
+}
+
+.cancel-btn:hover,
+.confirm-btn:hover {
+    opacity: 0.9;
+}
+
+/* 主题变量定义 */
+:root {
+    /* 浅色主题 */
+    --bg-primary: #F5F5F7;
+    --bg-secondary: #FFFFFF;
+    --bg-tertiary: #FAFAFA;
+    
+    --text-primary: #1D1D1F;
+    --text-secondary: #86868B;
+    --text-tertiary: #6E6E73;
+    
+    --border-color: #D2D2D7;
+    --border-light: #E5E5EA;
+    
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --shadow-light: rgba(0, 0, 0, 0.05);
+    
+    --primary-color: #0066CC;
+    --primary-light: #147CE5;
+    --primary-dark: #004C99;
+    
+    --success-color: #34C759;
+    --warning-color: #FF9F0A;
+    --error-color: #FF3B30;
+    --info-color: #5856D6;
+
+    /* 卡片和面板 */
+    --card-bg: #FFFFFF;
+    --card-border: 1px solid var(--border-color);
+    --card-shadow: 0 2px 10px var(--shadow-color);
+    
+    /* 导航栏 */
+    --nav-bg: rgba(255, 255, 255, 0.8);
+    --nav-border: 1px solid var(--border-color);
+    
+    /* 侧边栏 */
+    --sidebar-bg: rgba(255, 255, 255, 0.9);
+    --sidebar-active: var(--primary-color);
+    --sidebar-hover: var(--bg-tertiary);
+    
+    /* 表单元素 */
+    --input-bg: #FAFAFA;
+    --input-border: var(--border-color);
+    --input-focus: var(--primary-color);
+    --input-disabled: #F5F5F7;
+    
+    /* 按钮 */
+    --btn-primary-bg: var(--primary-color);
+    --btn-primary-text: #FFFFFF;
+    --btn-secondary-bg: var(--bg-tertiary);
+    --btn-secondary-text: var(--text-primary);
+}
+
+/* 深色主题 */
+[data-theme="dark"] {
+    --bg-primary: #000000;
+    --bg-secondary: #1C1C1E;
+    --bg-tertiary: #2C2C2E;
+    
+    --text-primary: #FFFFFF;
+    --text-secondary: #98989D;
+    --text-tertiary: #8E8E93;
+    
+    --border-color: #38383A;
+    --border-light: #48484A;
+    
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --shadow-light: rgba(0, 0, 0, 0.2);
+    
+    --primary-color: #0A84FF;
+    --primary-light: #409CFF;
+    --primary-dark: #0066CC;
+    
+    --success-color: #32D74B;
+    --warning-color: #FF9F0A;
+    --error-color: #FF453A;
+    --info-color: #5E5CE6;
+
+    /* 卡片和面板 */
+    --card-bg: #1C1C1E;
+    --card-border: 1px solid var(--border-color);
+    --card-shadow: 0 2px 10px var(--shadow-color);
+    
+    /* 导航栏 */
+    --nav-bg: rgba(28, 28, 30, 0.8);
+    --nav-border: 1px solid var(--border-color);
+    
+    /* 侧边栏 */
+    --sidebar-bg: rgba(28, 28, 30, 0.9);
+    --sidebar-active: var(--primary-color);
+    --sidebar-hover: var(--bg-tertiary);
+    
+    /* 表单元素 */
+    --input-bg: #2C2C2E;
+    --input-border: var(--border-color);
+    --input-focus: var(--primary-color);
+    --input-disabled: #3A3A3C;
+    
+    /* 按钮 */
+    --btn-primary-bg: var(--primary-color);
+    --btn-primary-text: #FFFFFF;
+    --btn-secondary-bg: var(--bg-tertiary);
+    --btn-secondary-text: var(--text-primary);
+}
+
+/* 基础样式 */
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+/* 所有卡片和面板 */
+.card, .panel {
+    background-color: var(--card-bg);
+    border: var(--card-border);
+    box-shadow: var(--card-shadow);
+}
+
+/* 所有输入框 */
+input, textarea, select {
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    color: var(--text-primary);
+}
+
+input:disabled, textarea:disabled, select:disabled {
+    background-color: var(--input-disabled);
+}
+
+/* 按钮样式 */
+.btn-primary {
+    background-color: var(--btn-primary-bg);
+    color: var(--btn-primary-text);
+}
+
+.btn-secondary {
+    background-color: var(--btn-secondary-bg);
+    color: var(--btn-secondary-text);
+}
+
+/* 表格样式 */
+table {
+    background-color: var(--card-bg);
+}
+
+th {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+td {
+    border-bottom: 1px solid var(--border-light);
+    color: var(--text-secondary);
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-tertiary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--text-tertiary);
+    border-radius: 4px;
+}
+
+/* 过渡动画 */
+* {
+    transition: background-color 0.3s ease,
+                color 0.3s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+/* 登录页面背景 */
+.admin-login-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    /* 浅色模式背景 */
+    background: linear-gradient(135deg, #f6f8fc 0%, #dde5f2 100%);
+}
+
+/* 深色模式背景 */
+[data-theme="dark"] .admin-login-container {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d3436 100%);
+}
+
+/* 添加动态背景效果 */
+.admin-login-container::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, 
+        rgba(255, 255, 255, 0.1) 0%, 
+        transparent 60%);
+    animation: rotate 30s linear infinite;
+    z-index: 0;
+}
+
+/* 深色模式动态背景 */
+[data-theme="dark"] .admin-login-container::before {
+    background: radial-gradient(circle at center, 
+        rgba(255, 255, 255, 0.05) 0%, 
+        transparent 60%);
+}
+
+/* 添加浮动气泡效果 */
+.admin-login-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.1) 0%, transparent 8%),
+        radial-gradient(circle at 80% 70%, rgba(255,255,255,0.1) 0%, transparent 8%);
+    animation: float 20s ease-in-out infinite;
+    z-index: 0;
+}
+
+/* 深色模式浮动气泡 */
+[data-theme="dark"] .admin-login-container::after {
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.05) 0%, transparent 8%),
+        radial-gradient(circle at 80% 70%, rgba(255,255,255,0.05) 0%, transparent 8%);
+}
+
+/* 动画效果 */
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* 确保登录框在动态背景上层 */
+.admin-login-box {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+/* 深模式登录框 */
+[data-theme="dark"] .admin-login-box {
+    background: rgba(28, 28, 30, 0.95);
+}
+
+/* 主题切换动画 */
+.theme-transition {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    pointer-events: none;
+    z-index: 9999;
+    transform: scale(0);
+    opacity: 0.3;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+.theme-transition.expand {
+    opacity: 0;
+}
+
+/* 优化主题切换按钮样式 */
+.theme-toggle {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: var(--bg-white);
+    color: var(--text-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.theme-toggle:hover {
+    background: var(--bg-light);
+}
+
+/* 主题切换图标样式 */
+.theme-toggle i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 太阳图标 */
+.theme-toggle .fa-sun {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0) scale(1);
+}
+
+/* 月亮图标 */
+.theme-toggle .fa-moon {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-90deg) scale(0.5);
+}
+
+/* 深色模式下的图标状态 */
+[data-theme="dark"] .theme-toggle .fa-sun {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(90deg) scale(0.5);
+}
+
+[data-theme="dark"] .theme-toggle .fa-moon {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0) scale(1);
+}
+
+/* 主题过渡效果 */
+:root {
+    /* 其他变量保持不变 */
+    --theme-transition: background-color 0.3s ease,
+                       color 0.3s ease,
+                       border-color 0.3s ease,
+                       box-shadow 0.3s ease;
+}
+
+/* 主题切换时的过渡效果 */
+.theme-transitioning * {
+    transition: var(--theme-transition) !important;
+}
+
+/* 主题切换按钮样式 */
+.theme-toggle {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: var(--bg-white);
+    color: var(--text-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.theme-toggle:hover {
+    background: var(--bg-light);
+}
+
+/* 主题切换图标样式 */
+.theme-toggle i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 18px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 太阳图标 */
+.theme-toggle .fa-sun {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0) scale(1);
+}
+
+/* 月亮图标 */
+.theme-toggle .fa-moon {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-90deg) scale(0.5);
+}
+
+/* 深色模式下的图标状态 */
+[data-theme="dark"] .theme-toggle .fa-sun {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(90deg) scale(0.5);
+}
+
+[data-theme="dark"] .theme-toggle .fa-moon {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0) scale(1);
+}
+
+/* 顶部导航栏样式 */
+.top-nav {
+    height: 64px;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1000;
+}
+
+/* 主题切换按钮 */
+.theme-toggle {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: var(--bg-secondary);
+    color: var(--text-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.theme-toggle i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-toggle .fa-sun {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0) scale(1);
+}
+
+.theme-toggle .fa-moon {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-90deg) scale(0.5);
+}
+
+[data-theme="dark"] .theme-toggle .fa-sun {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(90deg) scale(0.5);
+}
+
+[data-theme="dark"] .theme-toggle .fa-moon {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0) scale(1);
+}
+
+/* 用户信息样式 */
+.admin-info {
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.admin-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.admin-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    display: none;
+    z-index: 1000;
+}
+
+.admin-info:hover .admin-dropdown {
+    display: block;
+}
+
+.admin-dropdown ul {
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+}
+
+.admin-dropdown li {
+    padding: 10px 20px;
+}
+
+.admin-dropdown li a {
+    color: var(--text-color);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-dropdown li a:hover {
+    background: var(--bg-light);
+}

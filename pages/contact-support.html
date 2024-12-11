@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系技术支持 - 博客后台管理系统</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/contact-support.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="../js/theme.js"></script>
+</head>
+<body>
+    <div class="contact-support-container">
+        <button class="theme-toggle">
+            <i class="fas fa-sun"></i>
+            <i class="fas fa-moon" style="display: none;"></i>
+        </button>
+        <div class="contact-support-box">
+            <div class="contact-support-header">
+                <img src="../images/logo.png" alt="Logo" class="admin-logo">
+                <h1>联系技术支持</h1>
+                <p>请详细描述您遇到的问题，我们会尽快处理</p>
+            </div>
+            
+            <form class="contact-support-form" id="contactSupportForm">
+                <div class="form-group">
+                    <label for="name">您的称呼</label>
+                    <input type="text" id="name" name="name" 
+                           placeholder="请输入您的称呼" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="contact">联系方式</label>
+                    <input type="text" id="contact" name="contact" 
+                           placeholder="请输入您的联系方式（手机号/微信/QQ）" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="issue">问题类型</label>
+                    <select id="issue" name="issue" required>
+                        <option value="">请选择问题类型</option>
+                        <option value="login">登录问题</option>
+                        <option value="password">密码问题</option>
+                        <option value="permission">权限问题</option>
+                        <option value="other">其他问题</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">问题描述</label>
+                    <textarea id="description" name="description" 
+                            placeholder="请详细描述您遇到的问题..." 
+                            rows="5" required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i>
+                    提交
+                </button>
+            </form>
+
+            <div class="form-footer">
+                <a href="./login.html" class="back-to-login">
+                    <i class="fas fa-arrow-left"></i>
+                    返回登录
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/contact-support.js"></script>
+</body>
+</html> 

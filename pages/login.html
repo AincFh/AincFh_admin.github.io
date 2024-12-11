@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理员登录 - 博客后台管理系统</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-login-container">
+        <div class="admin-login-box">
+            <button class="theme-toggle">
+                <i class="fas fa-sun"></i>
+                <i class="fas fa-moon" style="display: none;"></i>
+            </button>
+            
+            <div class="admin-login-header">
+                <img src="../images/logo.png" alt="Logo" class="admin-logo">
+                <h1>博客后台管理系统</h1>
+                <p>请输入您的管理员账号和密码</p>
+            </div>
+            
+            <form class="admin-login-form" id="adminLoginForm">
+                <div class="form-group">
+                    <label for="email"><i class="fas fa-envelope"></i></label>
+                    <input type="email" id="email" name="email" 
+                           placeholder="管理员邮箱" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password"><i class="fas fa-lock"></i></label>
+                    <input type="password" id="password" name="password" 
+                           placeholder="密码" required>
+                    <i class="fas fa-eye-slash toggle-password"></i>
+                </div>
+
+                <!-- 图形验证码 -->
+                <div class="form-group captcha-group">
+                    <div class="captcha-input">
+                        <label for="captcha"><i class="fas fa-shield-alt"></i></label>
+                        <input type="text" id="captcha" name="captcha" 
+                               placeholder="请输入验证码" required>
+                    </div>
+                    <div class="captcha-image" id="captchaImage">
+                        <!-- 验证码图片将通过 JavaScript 动态生成 -->
+                    </div>
+                    <button type="button" class="refresh-captcha" id="refreshCaptcha">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                </div>
+
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" name="remember">
+                        <span>记住我</span>
+                    </label>
+                    <a href="./forgot-password.html" class="forgot-password">忘记密码？</a>
+                </div>
+
+                <button type="submit" class="login-btn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    登录
+                </button>
+            </form>
+
+            <div class="form-footer">
+                <p>遇到问题？ <a href="./contact-support.html">联系技术支持</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/theme.js"></script>
+    <script src="../js/login.js"></script>
+</body>
+</html>

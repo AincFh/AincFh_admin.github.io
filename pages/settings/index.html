@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>系统设置 - 博客后台管理系统</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="../../css/settings.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="../../js/theme.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="../../images/logo.png" alt="Logo" class="admin-logo">
+                <h1>博客管理系统</h1>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="../index.html">
+                            <i class="fas fa-home"></i>
+                            <span>仪表盘</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../posts/index.html">
+                            <i class="fas fa-file-alt"></i>
+                            <span>文章管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../categories/index.html">
+                            <i class="fas fa-folder"></i>
+                            <span>分类管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../comments/index.html">
+                            <i class="fas fa-comments"></i>
+                            <span>评论管理</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="./index.html">
+                            <i class="fas fa-cog"></i>
+                            <span>系统设置</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-nav">
+                <div class="nav-left">
+                    <button class="toggle-sidebar">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h2>系统设置</h2>
+                </div>
+                <div class="nav-right">
+                    <button class="theme-toggle">
+                        <i class="fas fa-sun"></i>
+                        <i class="fas fa-moon" style="display: none;"></i>
+                    </button>
+                    <div class="admin-info">
+                        <img src="../../images/avatar.png" alt="Avatar" class="admin-avatar">
+                        <span class="admin-name">管理员</span>
+                        <div class="admin-dropdown">
+                            <ul>
+                                <li>
+                                    <a href="./profile.html">
+                                        <i class="fas fa-user"></i>
+                                        个人信息
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../login.html" class="logout">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                        退出登录
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content">
+                <!-- 设置选项卡 -->
+                <div class="settings-tabs">
+                    <button class="tab-btn active" data-tab="basic">
+                        <i class="fas fa-cog"></i>
+                        基本设置
+                    </button>
+                    <button class="tab-btn" data-tab="security">
+                        <i class="fas fa-shield-alt"></i>
+                        安全设置
+                    </button>
+                    <button class="tab-btn" data-tab="seo">
+                        <i class="fas fa-search"></i>
+                        SEO设置
+                    </button>
+                    <button class="tab-btn" data-tab="email">
+                        <i class="fas fa-envelope"></i>
+                        邮件设置
+                    </button>
+                    <button class="tab-btn" data-tab="storage">
+                        <i class="fas fa-hdd"></i>
+                        存储设置
+                    </button>
+                    <button class="tab-btn" data-tab="backup">
+                        <i class="fas fa-database"></i>
+                        备份恢复
+                    </button>
+                </div>
+
+                <!-- 设置内容区 -->
+                <div class="settings-content">
+                    <!-- 基本设置面板 -->
+                    <div class="tab-panel active" id="basic-panel">
+                        <form class="settings-form" id="basicSettingsForm">
+                            <!-- 网站信息 -->
+                            <div class="settings-section">
+                                <h3>网站信息</h3>
+                                <div class="form-group">
+                                    <label for="siteName">网站名称</label>
+                                    <input type="text" id="siteName" name="siteName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="siteDesc">网站描述</label>
+                                    <textarea id="siteDesc" name="siteDesc" rows="3"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="siteUrl">网站地址</label>
+                                    <input type="url" id="siteUrl" name="siteUrl" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="logo">网站Logo</label>
+                                    <div class="upload-box">
+                                        <input type="file" id="logo" name="logo" accept="image/*">
+                                        <div class="upload-preview">
+                                            <img src="../../images/logo.png" alt="Logo Preview">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="favicon">网站图标</label>
+                                    <div class="upload-box">
+                                        <input type="file" id="favicon" name="favicon" accept="image/x-icon,image/png">
+                                        <div class="upload-preview">
+                                            <img src="../../images/favicon.ico" alt="Favicon Preview">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 站点设置 -->
+                            <div class="settings-section">
+                                <h3>站点设置</h3>
+                                <div class="form-group">
+                                    <label for="timezone">时区设置</label>
+                                    <select id="timezone" name="timezone">
+                                        <option value="Asia/Shanghai">中国标准时间 (UTC+8)</option>
+                                        <!-- 其他时区选项 -->
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="dateFormat">日期格式</label>
+                                    <select id="dateFormat" name="dateFormat">
+                                        <option value="Y-m-d">2024-01-15</option>
+                                        <option value="Y/m/d">2024/01/15</option>
+                                        <option value="d-m-Y">15-01-2024</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="language">系统语言</label>
+                                    <select id="language" name="language">
+                                        <option value="zh-CN">简体中文</option>
+                                        <option value="en-US">English</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- 评论设置 -->
+                            <div class="settings-section">
+                                <h3>评论设置</h3>
+                                <div class="form-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="enableComments">
+                                        <span>启用评论功能</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="moderateComments">
+                                        <span>评论需要审核</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="commentOrder">评论排序</label>
+                                    <select id="commentOrder" name="commentOrder">
+                                        <option value="newest">最新评论在前</option>
+                                        <option value="oldest">最早评论在前</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="commentsPerPage">每页显示评论数</label>
+                                    <input type="number" id="commentsPerPage" name="commentsPerPage" min="5" max="100">
+                                </div>
+                            </div>
+
+                            <!-- 文章设置 -->
+                            <div class="settings-section">
+                                <h3>文章设置</h3>
+                                <div class="form-group">
+                                    <label for="postsPerPage">每页显示文章数</label>
+                                    <input type="number" id="postsPerPage" name="postsPerPage" min="5" max="50">
+                                </div>
+                                <div class="form-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="enableExcerpt">
+                                        <span>启用文章摘要</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="excerptLength">摘要长度（字数）</label>
+                                    <input type="number" id="excerptLength" name="excerptLength" min="50" max="500">
+                                </div>
+                            </div>
+
+                            <button type="submit" class="save-btn">保存设置</button>
+                        </form>
+                    </div>
+
+                    <!-- 安全设置面板 -->
+                    <div class="tab-panel" id="security-panel">
+                        <form class="settings-form" id="securityForm">
+                            <!-- 登录安全 -->
+                            <div class="settings-section">
+                                <h3>登录安全</h3>
+                                <div class="form-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="twoFactorAuth">
+                                        <span>启用两步验证</span>
+                                    </label>
+                                    <p class="form-help">开启后，登录时需要输入手机验证码</p>
+                                </div>
+                                <div class="form-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="loginNotification">
+                                        <span>登录通知</span>
+                                    </label>
+                                    <p class="form-help">有新的登录时发送邮件通知</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="maxLoginAttempts">登录尝试次数限制</label>
+                                    <select id="maxLoginAttempts" name="maxLoginAttempts">
+                                        <option value="3">3次</option>
+                                        <option value="5">5次</option>
+                                        <option value="10">10次</option>
+                                    </select>
+                                    <p class="form-help">超过限制次数后账号将被临时锁定</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lockoutDuration">锁定时长</label>
+                                    <select id="lockoutDuration" name="lockoutDuration">
+                                        <option value="15">15分钟</option>
+                                        <option value="30">30分钟</option>
+                                        <option value="60">1小时</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- 密码策略 -->
+                            <div class="settings-section">
+                                <h3>密码策略</h3>
+                                <div class="form-group">
+                                    <label for="minPasswordLength">最小密码长度</label>
+                                    <input type="number" id="minPasswordLength" name="minPasswordLength" 
+                                           min="8" max="32" value="8">
+                                </div>
+                                <div class="form-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="requireUppercase">
+                                        <span>必须包含大写字母</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="requireNumbers">
+                                        <span>必须包含数字</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="requireSpecialChars">
+                                        <span>必须包含特殊字符</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="passwordExpiration">密码有效期</label>
+                                    <select id="passwordExpiration" name="passwordExpiration">
+                                        <option value="0">永不过期</option>
+                                        <option value="30">30天</option>
+                                        <option value="90">90天</option>
+                                        <option value="180">180天</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- IP白名单 -->
+                            <div class="settings-section">
+                                <h3>IP访问控制</h3>
+                                <div class="form-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="enableIpWhitelist">
+                                        <span>启用IP白名单</span>
+                                    </label>
+                                    <p class="form-help">只允许指定IP地址访问后台</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ipWhitelist">IP白名单</label>
+                                    <textarea id="ipWhitelist" name="ipWhitelist" 
+                                             rows="4" placeholder="每行输入一个IP地址"></textarea>
+                                    <p class="form-help">支持IPv4和IPv6地址，可使用*作为通配符</p>
+                                </div>
+                            </div>
+
+                            <!-- 操作日志 -->
+                            <div class="settings-section">
+                                <h3>操作日志</h3>
+                                <div class="form-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="enableAuditLog">
+                                        <span>记录操作日志</span>
+                                    </label>
+                                    <p class="form-help">记录管理员的重要操作</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="logRetention">日志保留时间</label>
+                                    <select id="logRetention" name="logRetention">
+                                        <option value="30">30天</option>
+                                        <option value="90">90天</option>
+                                        <option value="180">180天</option>
+                                        <option value="365">1年</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="save-btn">
+                                <i class="fas fa-save"></i>
+                                保存设置
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- SEO设置面板 -->
+                    <div class="tab-panel" id="seo-panel">
+                        <form class="settings-form" id="seoForm">
+                            <!-- 基本SEO设置 -->
+                            <div class="settings-section">
+                                <h3>基本SEO设置</h3>
+                                <div class="form-group">
+                                    <label for="siteTitle">网站标题</label>
+                                    <input type="text" id="siteTitle" name="siteTitle" required>
+                                    <p class="form-help">显示在浏览器标签页和搜索结果中的标题</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="metaKeywords">关键词</label>
+                                    <input type="text" id="metaKeywords" name="metaKeywords" 
+                                           placeholder="多个关键词用英文逗号分隔">
+                                    <p class="form-help">用于搜索引擎优化的关键词</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="metaDescription">网站描述</label>
+                                    <textarea id="metaDescription" name="metaDescription" rows="3"></textarea>
+                                    <p class="form-help">显示在搜索结果中的网站描述</p>
+                                </div>
+                            </div>
+
+                            <!-- 搜索引擎设置 -->
+                            <div class="settings-section">
+                                <h3>搜索引擎设置</h3>
+                                <div class="form-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" name="allowIndex">
+                                        <span>允许搜索引擎收录</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="robotsTxt">robots.txt 内容</label>
+                                    <textarea id="robotsTxt" name="robotsTxt" rows="6" 
+                                             class="code-editor"></textarea>
+                                    <p class="form-help">指导搜索引擎爬虫的规则</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="sitemapUrl">Sitemap 地址</label>
+                                    <div class="input-group">
+                                        <input type="url" id="sitemapUrl" name="sitemapUrl" 
+                                               value="/sitemap.xml" readonly>
+                                        <button type="button" class="btn btn-secondary generate-sitemap">
+                                            <i class="fas fa-sync-alt"></i>
+                                            生成站点地图
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 社交媒体设置 -->
+                            <div class="settings-section">
+                                <h3>社交媒体设置</h3>
+                                <div class="form-group">
+                                    <label for="ogTitle">Open Graph 标题</label>
+                                    <input type="text" id="ogTitle" name="ogTitle">
+                                    <p class="form-help">在社交媒体分享时显示的标题</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ogDescription">Open Graph 描述</label>
+                                    <textarea id="ogDescription" name="ogDescription" rows="3"></textarea>
+                                    <p class="form-help">在社交媒体分享时显示的描述</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ogImage">Open Graph 图片</label>
+                                    <div class="upload-box">
+                                        <input type="file" id="ogImage" name="ogImage" accept="image/*">
+                                        <div class="upload-preview">
+                                            <img src="../../images/og-image.png" alt="OG Image Preview">
+                                        </div>
+                                    </div>
+                                    <p class="form-help">在社交媒体分享时显示的预览图片</p>
+                                </div>
+                            </div>
+
+                            <!-- 高级设置 -->
+                            <div class="settings-section">
+                                <h3>高级设置</h3>
+                                <div class="form-group">
+                                    <label for="canonicalUrl">规范链接</label>
+                                    <input type="url" id="canonicalUrl" name="canonicalUrl">
+                                    <p class="form-help">指定首选的网址版本，避免重复内容</p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="customMetaTags">自定义Meta标签</label>
+                                    <textarea id="customMetaTags" name="customMetaTags" rows="6" 
+                                             class="code-editor"></textarea>
+                                    <p class="form-help">添加自定义的Meta标签，每行一个</p>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="save-btn">
+                                <i class="fas fa-save"></i>
+                                保存设置
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- 邮件设置面板 -->
+                    <div class="tab-panel" id="email-panel">
+                        <!-- 邮件设置内容 -->
+                    </div>
+
+                    <!-- 存储设置面板 -->
+                    <div class="tab-panel" id="storage-panel">
+                        <!-- 存储设置内容 -->
+                    </div>
+
+                    <!-- 备份恢复面板 -->
+                    <div class="tab-panel" id="backup-panel">
+                        <!-- 备份恢复内容 -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../../js/dashboard.js"></script>
+    <script src="../../js/settings.js"></script>
+</body>
+</html> 

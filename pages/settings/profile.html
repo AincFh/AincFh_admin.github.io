@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人信息 - 博客后台管理系统</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="../../css/profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="../../js/theme.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="../../images/logo.png" alt="Logo" class="admin-logo">
+                <h1>博客管理系统</h1>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="../index.html">
+                            <i class="fas fa-home"></i>
+                            <span>仪表盘</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../posts/index.html">
+                            <i class="fas fa-file-alt"></i>
+                            <span>文章管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../categories/index.html">
+                            <i class="fas fa-folder"></i>
+                            <span>分类管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../comments/index.html">
+                            <i class="fas fa-comments"></i>
+                            <span>评论管理</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="../settings/index.html">
+                            <i class="fas fa-cog"></i>
+                            <span>系统设置</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            <header class="top-nav">
+                <div class="nav-left">
+                    <button class="toggle-sidebar">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h2>个人信息</h2>
+                </div>
+                <div class="nav-right">
+                    <button class="theme-toggle">
+                        <i class="fas fa-sun"></i>
+                        <i class="fas fa-moon" style="display: none;"></i>
+                    </button>
+                    <div class="admin-info">
+                        <img src="../../images/avatar.png" alt="Avatar" class="admin-avatar">
+                        <span class="admin-name">管理员</span>
+                        <div class="admin-dropdown">
+                            <ul>
+                                <li>
+                                    <a href="./profile.html">
+                                        <i class="fas fa-user"></i>
+                                        个人信息
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../login.html" class="logout">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                        退出登录
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content">
+                <div class="settings-panel">
+                    <form class="settings-form" id="profileForm">
+                        <!-- 基本信息 -->
+                        <div class="settings-section">
+                            <h3>基本信息</h3>
+                            <div class="form-group">
+                                <label>头像</label>
+                                <div class="avatar-upload">
+                                    <div class="avatar-preview">
+                                        <img src="../../images/avatar.png" alt="Avatar" id="avatarPreview">
+                                    </div>
+                                    <div class="avatar-edit">
+                                        <input type="file" id="avatarUpload" accept="image/*">
+                                        <label for="avatarUpload" class="btn btn-secondary">
+                                            <i class="fas fa-camera"></i>
+                                            更换头像
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nickname">昵称</label>
+                                <input type="text" id="nickname" name="nickname" class="form-control" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="role">角色</label>
+                                <input type="text" id="role" value="超级管理员" disabled>
+                            </div>
+                        </div>
+
+                        <!-- 联系方式 -->
+                        <div class="settings-section">
+                            <h3>联系方式</h3>
+                            <div class="form-group">
+                                <label for="email">邮箱</label>
+                                <input type="email" id="email" name="email" class="form-control" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">手机号</label>
+                                <input type="tel" id="phone" name="phone" class="form-control">
+                            </div>
+                        </div>
+
+                        <!-- 个人简介 -->
+                        <div class="settings-section">
+                            <h3>个人简介</h3>
+                            <div class="form-group">
+                                <label for="bio">简介</label>
+                                <textarea id="bio" name="bio" rows="4" class="form-control"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 账号安全 -->
+                        <div class="settings-section">
+                            <h3>账号安全</h3>
+                            <div class="form-group">
+                                <label for="lastLogin">上次登录</label>
+                                <input type="text" id="lastLogin" value="2024-01-15 14:30:00" disabled>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="loginIP">登录IP</label>
+                                <input type="text" id="loginIP" value="192.168.1.1" disabled>
+                            </div>
+
+                            <button type="button" class="btn btn-secondary change-password-btn">
+                                <i class="fas fa-key"></i>
+                                修改密码
+                            </button>
+                        </div>
+
+                        <!-- 保存按钮 -->
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i>
+                                保存修改
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../../js/dashboard.js"></script>
+    <script src="../../js/profile.js"></script>
+</body>
+</html> 

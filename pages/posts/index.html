@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文章管理 - 博客后台管理系统</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="../../css/posts.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <!-- 保持与主页相同的侧边栏结构 -->
+            <div class="sidebar-header">
+                <img src="../../images/logo.png" alt="Logo" class="admin-logo">
+                <h1>博客管理系统</h1>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="../index.html">
+                            <i class="fas fa-home"></i>
+                            <span>仪表盘</span>
+                        </a>
+                    </li>
+                    <li class="active">
+                        <a href="./index.html">
+                            <i class="fas fa-file-alt"></i>
+                            <span>文章管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../categories/index.html">
+                            <i class="fas fa-folder"></i>
+                            <span>分类管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../comments/index.html">
+                            <i class="fas fa-comments"></i>
+                            <span>评论管理</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="../settings/index.html">
+                            <i class="fas fa-cog"></i>
+                            <span>系统设置</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 主要内容区 -->
+        <main class="main-content">
+            <!-- 顶部导航栏 -->
+            <header class="top-nav">
+                <div class="nav-left">
+                    <button class="toggle-sidebar">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h2>文章管理</h2>
+                </div>
+                <div class="nav-right">
+                    <div class="admin-info">
+                        <img src="../../images/avatar.png" alt="Avatar" class="admin-avatar">
+                        <span class="admin-name">管理员</span>
+                        <div class="admin-dropdown">
+                            <ul>
+                                <li>
+                                    <a href="../settings/profile.html">
+                                        <i class="fas fa-user"></i>
+                                        个人信息
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="../login.html" class="logout">
+                                        <i class="fas fa-sign-out-alt"></i>
+                                        退出登录
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- 页面内�� -->
+            <div class="content">
+                <!-- 操作栏 -->
+                <div class="action-bar">
+                    <div class="search-box">
+                        <input type="text" placeholder="搜索文章...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="filters">
+                        <select class="category-filter">
+                            <option value="">所有分类</option>
+                            <option value="1">技术</option>
+                            <option value="2">生活</option>
+                            <option value="3">随笔</option>
+                        </select>
+                        <select class="status-filter">
+                            <option value="">所有状态</option>
+                            <option value="published">已发布</option>
+                            <option value="draft">草稿</option>
+                        </select>
+                    </div>
+                    <a href="./create.html" class="create-btn">
+                        <i class="fas fa-plus"></i>
+                        写文章
+                    </a>
+                </div>
+
+                <!-- 文章列表 -->
+                <div class="posts-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>标题</th>
+                                <th>分类</th>
+                                <th>状态</th>
+                                <th>发布时间</th>
+                                <th>浏览量</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- 这里会通过 JavaScript 动态添加数据 -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 分页 -->
+                <div class="pagination">
+                    <button class="prev-page" disabled>
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="page-numbers">
+                        <span class="current">1</span>
+                        <span>2</span>
+                        <span>3</span>
+                        <span>...</span>
+                        <span>10</span>
+                    </div>
+                    <button class="next-page">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../../js/dashboard.js"></script>
+    <script src="../../js/posts.js"></script>
+</body>
+</html> 
